@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <script src='{% static "js/countdown.js" %}?v={{version}}'></script>
+{% endblock head %}
+
+{% block content %}
+    <p class="clr-theme">You have an active payment pipeline</p>
+    <span>Try again after <span class="font-b" id="min"></span> : <span id="sec" class="font-b"></span></span>
+    {{purchase.time_left_json_script | safe}}
+    <script>
+        const unitNames = ['min', 'sec'];
+        countDown(secsLeft, unitNames, [location.reload]);
+    </script>
+{% endblock content %}

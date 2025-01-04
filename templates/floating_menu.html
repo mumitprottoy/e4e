@@ -1,0 +1,38 @@
+{% if user.is_authenticated %}
+<div id="practice-pop-up" class="fixed full-screen bg-b-5" style="display: none;">
+    <div class="relative centered sdw bg-white p-2 rnd-3 bg-primary" style="width: 280px;">
+        <div class="txt-r"><button onclick="toggleVisibility('practice-pop-up')"><span class="fa fa-times"></span></button></div>
+        {% include "practice_home_page.html" %}
+    </div>
+</div>
+<div class="fixed w-100" style="bottom: 5%; left: 0%; z-index: 50;">
+    <div class="resp-30-80 m-c p-2 rnd-4 sdw bg-white">
+        <div class="grid-col-111">
+           
+            <div class="txt-c m">
+                <a href="#" onclick="toggleVisibility('practice-pop-up'); return false">
+                    <span class="font-xl fas fa-chalkboard-teacher block {{clr_practise}}"></span>
+                    <span class="font-sm font-b {{clr_practise}}">Practise</span>
+                </a>
+            </div>
+        
+        
+            <div class="txt-c m">
+                <a href="{% url 'library' %}">
+                    <span class="font-xl fa fa-book block {{clr_library}}"></span>
+                    <span class="font-sm font-b {{clr_library}}">Library</span>
+                </a>
+            </div>
+        
+        
+            <div class="txt-c m">
+                <a href="{% url 'dashboard' %}">
+                    <span class="font-xl fa fa-line-chart block {{clr_dashboard}}"></span>
+                    <span class="font-sm font-b {{clr_dashboard}}">Dashboard</span>
+                </a>
+            </div>
+           
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,9 @@
+<fieldset class="no-brd brd-t-def p-2 m-t-b-4">
+    <legend class="p m-c">Or</legend>
+    {% load socialaccount %}
+    <form action='{% provider_login_url "google" %}' method='POST'>
+        {% csrf_token %}
+        <button class="rnd-1 bg-b-1 p-2 w-90 m-c block txt-c" style="display: flex; align-items: center; justify-content: center;" type="submit"><span class="inline-block m">Continue with</span> <img class="inline-block m" style="width: 70px; margin-top: 8px;" src="https://images.e-forenglish.com/logos/google.png" alt="Google"></button>
+        
+    </form>
+</fieldset>

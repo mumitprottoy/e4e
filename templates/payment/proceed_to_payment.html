@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="p rnd-1">
+        <p class="font-xl clr-theme">Payment</p>
+        <div class="grid-col-12 m-t-b-4 p-2 rnd-1 bg-b-1 font-b">
+            <div><span>Payable</span></div>
+            <div class="txt-r">
+                {% if purchase.is_discounted %}
+                <span><del class="clr-b-3">BDT {{purchase.product.price}}</del> <span class="clr-green">BDT {{purchase.payable_amount}}</span></span>
+                {% else %}
+                <span>BDT {{purchase.payable_amount}}</span>
+                {% endif %}
+            </div>
+        </div>
+        <form method='POST'>
+            {% csrf_token %}
+            <div class="w-fc m-c p">
+                <button type="submit" class="p-2 clr-white font-l bg-primary brd-primary rnd-1"><span class="clr-white">Proceed to payment</span> <span class="clr-white fa fa-arrow-right"></span></button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}  

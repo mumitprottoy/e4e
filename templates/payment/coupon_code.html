@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div id="wrapper">
+        {% include "single_input_form.html" with form_data=form_data class_script='ok' element_id='wrapper' %}
+        <br>
+        <a href="/purchase/organic" class="m-t-b-6 bg-theme clr-white p font-b rnd-1">Continue without Coupon Code <span class="fa fa-arrow-right clr-white"></span></a>
+        <br><br>
+    </div>
+{% endblock content %}

@@ -1,0 +1,8 @@
+<div class="resp-50-90 m-c">
+    {% for report in short_report %}  
+    <div class="{{report.border}} bg-smoke p grid-col-11 m-2 rnd-1">
+        <div><span class="font-b">{{report.name}}</span></div>
+        <div class="txt-c"><span class="font-b">{{report.value}}</span></div>
+    </div>
+    {% endfor %}   
+</div>

@@ -1,0 +1,27 @@
+<p class="font-l">Test Info</p>
+<div class="brd-l-bar-primary bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Total Marks</span></div>
+    <div class="txt-r"><span class="font-b">{{test.total_marks}}</span></div>
+</div>
+<div class="brd-l-bar-primary bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Total Questions</span></div>
+    <div class="txt-r"><span class="font-b">{{test.question_count}}</span></div>
+</div>
+<div class="brd-l-bar-primary bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Time (Minutes)</span></div>
+    <div class="txt-r"><span class="font-b">{{test.default_test_time}}</span></div>
+</div>
+
+<p class="font-l">Marking Criteria</p>
+<div class="brd-l-bar-green bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Correct</span></div>
+    <div class="txt-r"><span class="font-b">{{test.marking_criterion.correct}}</span></div>
+</div>
+<div class="brd-l-bar-red bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Wrong</span></div>
+    <div class="txt-r"><span class="font-b">{{test.marking_criterion.wrong}}</span></div>
+</div>
+<div class="brd-l-bar-def bg-smoke p grid-col-11 m-2">
+    <div><span class="font-b">Wrong</span></div>
+    <div class="txt-r"><span class="font-b">{{test.marking_criterion.skipped}}</span></div>
+</div>

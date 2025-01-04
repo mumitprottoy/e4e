@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <p class="font-l">{{page_title}}</p>
+    <div style="position: fixed; right: 2em; top: 6em;">
+        <a href="{{test_url}}" class="p-2 bg-theme clr-white rnd-1">Give Test</a>
+    </div>
+    <div class="m-t-b-6">
+        {% for meta in bulk %}
+        <fieldset id="meta-{{meta.id}}" class="m-t-b-4 no-brd brd-t-def p-2">
+            <legend class="p font-b font-sm bg-theme clr-white">{{meta.appearance.label}} / {{meta.chapter.name}}</legend>
+            {% if meta.has_passage %}
+              <div class="p m-t-b-2">
+                <span>{{meta.passage.text | safe}}</span>
+              </div>
+            {% endif %}
+            {% for q in meta.questions.all  %}  
+            <div id="q-{{q.id}}" class="p m-t-b-2 brd-def">
+                <span class="font-b block m">questions</span>
+                <span class="block m">{{q.text | safe}}</span>
+                {% for opt in q.options.all %}
+                <span id="opt-{{opt.id}}" class="block m p brd-def brd-l-bar-def rnd-1">{{opt.text | safe}}</span>
+                {% endfor %}
+                <div id="explanation-{{q.id}}" class="m-2 m-t-b-2 brd-l-bar-green bg-b-1 clr-white overflow-hidden" style="max-height: 0px;">
+                  <span class="font-b block m-2 m-t-b-2">Explanation:</span>
+                  <div class="m-2">
+                      <span>{{q.explanation.text | safe}}</span>
+                    </div>
+                </div>
+                <button href="#" class="block m-2 pointer clr-theme" onclick="showAnswerAndExplanation(this)">Show Answer</button>
+            </div>
+            {% endfor %}
+        </fieldset>
+        {% endfor %}
+
+    </div>
+
+    <script>{{answer_map_json | safe}}</script>
+    <script>
+        const showAnswerAndExplanation = element => {
+            const classMap = {
+                'block m p brd-def brd-l-bar-def rnd-1': 'block m p brd-green brd-l-bar-green rnd-1',
+                'block m p brd-green brd-l-bar-green rnd-1': 'block m p brd-def brd-l-bar-def rnd-1',
+            }
+            const textMap = {'Show Answer': 'Hide Answer', 'Hide Answer': 'Show Answer'};
+            element.innerText = textMap[element.innerText];
+            toggleMaxHeight('explanation-'+(element.parentElement.id).split('-')[1]);
+            const answerID = 'opt-' + (v[parseInt((element.parentElement.id).split('-')[1])]).toString();
+            const answer = document.getElementById(answerID);
+            answer.className = classMap[answer.className];
+        }
+    </script>
+{% endblock content %}

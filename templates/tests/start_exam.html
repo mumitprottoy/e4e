@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    {% include "tests/test_info.html" with test=test %}
+    <div class="m-t-2">
+        <form method='POST'>
+            {% csrf_token %}
+            <div class="m-c txt-c">
+                <button type="submit" class="p-2 clr-white font-l bg-theme rnd-1">Start Exam</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

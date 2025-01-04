@@ -1,0 +1,13 @@
+<div>
+    <p>Redirecting in <span id="sl" class="font-b">{{sl}}</span> seconds</p>
+    <span id="redirectURL" style="display: none;">{{redirect_url}}</span>
+    <script>
+        const redirectURL = document.getElementById('redirectURL').innerText;
+        setInterval(() => {
+            const sl = document.getElementById('sl');
+            const secLeft = parseInt(sl.innerText);
+            if (secLeft == 1) window.location.href = redirectURL;
+            sl.innerText = secLeft - 1;
+        }, 1000)
+    </script>
+</div>

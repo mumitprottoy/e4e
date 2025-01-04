@@ -1,0 +1,7 @@
+<div class="w-fc m-c p-2 m-t-b-4">
+    {% if user.is_authenticated %}
+    <a href="{% url 'quick-test' %}" class="rnd-4 bg-primary font-b clr-white p-4 brd-def-theme">Give a Quick Test</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="rnd-4 bg-primary font-b clr-white p-4 brd-def-theme">Get Started</a>
+    {% endif %}
+</div>

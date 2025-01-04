@@ -1,0 +1,14 @@
+{% extends "entrance/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="w-80 m-c">
+        {% include "single_input_form.html" with form_data=form_data %}
+        {% if auth_pwd %}
+        <a href="{% url 'forgot-password' %}" class="block m-t-b-2 clr-primary" style="text-decoration: underline;">Forgot password?</a>
+        {% endif %}
+    </div>
+    {% if google_login_option %}
+    {% include "entrance/google_login.html" %}
+    {% endif %}
+{% endblock content %}

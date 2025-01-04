@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <form method='POST'>
+        {% if message %}
+        <p>{{message}}</p>
+        {% endif %}
+        {% csrf_token %}
+        <button type="submit">Pay</button>
+    </form>
+{% endblock content %}

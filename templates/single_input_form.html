@@ -1,0 +1,26 @@
+    <div id="single-input-form" class="m-t-b-4">
+        <h1 class="font-lt">{{form_data.form_header}}</h1>
+        {% if errors %}
+        {% include "errors.html" with errors=errors %}
+        {% endif %}
+        <div class="m-t-b-4">
+            <form method='POST'>
+                {% csrf_token %}
+                <div class="grid-col-31">
+                    <div class="flex-l brd-def vert-c rnd-l-1">
+                        <input class="w-90 p-2 no-brd" type="{{form_data.input_type}}" name="{{form_data.input_name}}" placeholder="{{form_data.input_placeholder}}" required>
+                    </div>
+                    <div class="flex-c vert-c bg-primary brd-primary rnd-r-1">
+                        <button type="submit" class="p-2 clr-white font-l">{{form_data.submit_btn_text}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% if class_script %}
+        {% if element_id %}
+        <script>document.getElementById('{{element_id}}').className = 'm-t-b-6 m-c resp-70-90 p-2 rnd-1 sdw'</script>
+        {% else %}
+        <script>document.getElementById('single-input-form').className = 'm-t-b-6 m-c resp-70-90 p-2 rnd-1 sdw'</script>
+        {% endif %}
+        {% endif %}
+    </div>
