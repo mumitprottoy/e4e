@@ -13,6 +13,20 @@ def practice_home_page(request):
 
 @decorators.login_required
 @decorators.redirect_to_requested_page_after_login
+def choose_practice_material(request, material: str):
+    context = global_context.Context.get_context()
+    if material == 'chapters':
+        context['redirect_base_url'] = '/practise-chapter/'
+        context['materials'] = qb_models.Chapter.objects.all()
+    else: 
+        context['is_adm'] = True
+        context['redirect_base_url'] = '/practise-admission-test-questions/'
+        context['materials'] = qb_models.AdmissionTest.objects.all()
+    return render(request, 'practice/materials.html', context)
+
+
+@decorators.login_required
+@decorators.redirect_to_requested_page_after_login
 def pracrise_chapter(request, chapter_id: int):
     context = global_context.Context.get_context()
     chapter = qb_models.Chapter.objects.get(id=int(chapter_id))

@@ -14,3 +14,4 @@ QUICK_TEST_SYLLABUS = ['Preposition', 'Tense & Sequence of Tense', 'Narration', 
 GORIB_CHAPTER_ACCESS = ['Preposition', 'Tense & Sequence of Tense']
 
 comp_meta_qty = lambda qty: math.floor((qty * COMP_INCLUSION_PERC) / COMP_QUES_QTY)  
+code_sending_endpoint = 'https://emailserver.e-forenglish.com/send-code'

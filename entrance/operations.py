@@ -12,6 +12,8 @@ def get_unique_username(username, serial=-1) -> User:
 
 
 def create_quick_user(email: str) -> User:
+    user = User.objects.filter(email=email)
+    if user.exists(): return user.first()
     username = get_unique_username(email.split('@')[0])
     user = User(username=username, email=email)
     user.save()

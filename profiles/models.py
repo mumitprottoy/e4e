@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from stuff import models as stuff_models
 from utils.keygen import KeyGen
-
+from . import operations as ops
 
 class Picture(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='pic')
@@ -44,6 +44,7 @@ class SixDigitCode(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='codes')
     otp = models.CharField(max_length=6, default='') 
     verification_code = models.CharField(max_length=6, default='')
+    is_verified = models.BooleanField(default=False)
     
     def __generate_code(self):
         return KeyGen().num_key()
@@ -54,6 +55,23 @@ class SixDigitCode(models.Model):
     
     def change_verification_code(self):
         self.verification_code = self.__generate_code()
+        self.save()
+    
+    def send_code(self, code_type: str):
+        operation = 'reset_password' if code_type == 'OTP' else 'verify_email'
+        context = {
+            'code_type': code_type, 'code': self.otp if code_type == 'OTP' else self.verification_code}
+        data = ops.generate_email_data([self.user.email], operation, context, context['code'])
+        ops.send_email_request_to_server(data)
+    
+    def send_otp(self):
+        self.send_code('OTP')
+    
+    def send_verification_code(self):
+        self.send_code('verification code')
+        
+    def verify_email(self):
+        self.is_verified = True
         self.save()
     
     def save(self, *args, **kwargs):

@@ -62,6 +62,7 @@ urlpatterns = [
     
     # practice
     path('practise', practice_views.practice_home_page, name='practice-home-page'),
+    path('choose-practice-material/<str:material>', practice_views.choose_practice_material),
     path('practise-chapter/<int:chapter_id>', practice_views.pracrise_chapter),
-    path('practise-admission-test-question/<int:adm_id>', practice_views.pracrise_adm),
+    path('practise-admission-test-questions/<int:adm_id>', practice_views.pracrise_adm),
 ]

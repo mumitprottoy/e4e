@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <fieldset class="brd-def p-2 rnd-1">
+            <legend class="font-xl">Choose Practice Material</legend>
+            {% for material in materials %}
+              <div class="m-t-b-6">
+                <a href="{{redirect_base_url}}{{material.id}}" class="brd-def brd-l-bar-theme rnd-1 p block">
+                    {% if is_adm %}
+                      {{material.name}} ({{material.acronym}})
+                    {% else %}
+                      {{material.name}}
+                    {% endif %}
+                </a>
+              </div>
+            {% endfor %}
+        </fieldset>
+
+{% endblock content %}
