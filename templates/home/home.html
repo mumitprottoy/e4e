@@ -1,35 +1,60 @@
-{% extends "base.html" %}
 {% load static %}
-
-{% block head %}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/02c6faad26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?v={{version}}">
+    <script src='{% static "js/utils.js" %}?v={{version}}'></script>
     <link rel="stylesheet" href='{% static "css/home.css" %}?v={{version}}'>
-{% endblock head %} 
+    <title>E for English</title>
+</head>
+<body>
+    {% include "sidebar.html" %}
+    {% include "fixed_header.html" %}
+    <div class="sections-2">
+        <div id="main">
+            <div class="resp-80-90 m-c m-t-6">
+                {% include "floating_menu.html" %}
 
-{% block content %}
-{% include "floating_menu.html" %}
-    <h1>
-        <span class="font-b">Master</span> 
-        <span class="font-b clr-theme">English</span>
-        <br>
-        <span class="font-ssm">Anytime, Anywhere.</span>
-    </h1>
-    <div class="m-b-2 p-2 w-80 m-c">
-        <img src="{{primary_copy_image.url}}" alt="" class="w-100">
+    <div id="home-big" class="grid-col-11 p-2 sdw rnd-4">
+        <div>
+            <div>
+                <img src="https://images.e-forenglish.com/pics/edtech4-l-cropped.jpg" alt="" class=" rnd-4 w-100">
+            </div>
+        </div>
+        <div>
+            <div class="txt-r font-xl">
+                <h1 style="margin-right: 1rem;">
+                    <span class="font-b">Master</span> 
+                    <span class="font-b clr-theme">English</span>
+                    <br>
+                    <span class="font-ssm">Anytime, Anywhere.</span>
+                </h1>
+            </div>
+            <div class="m-t-b-2 txt-r" style="margin-right: 0.5rem;">
+                <img src="https://images.e-forenglish.com/pics/edtech6-r-cropped.jpg" alt="" class=" rnd-3 w-90">
+            </div>
+            
+        </div>
     </div>
-    <!-- <div class="w-fc m-c p-2 m-t-b-4">
-        {% if user.is_authenticated %}
-        <a href="{% url 'quick-test' %}" class="rnd-4 bg-theme clr-white p-4 brd-def-theme">Give a Quick Test</a>
-        {% else %}
-        <a href="{% url 'login' %}" class="rnd-4 bg-theme clr-white p-4 brd-def-theme">Get Started</a>
-        {% endif %}
-    </div> -->
+    
+    <div id="home-small" class="p-4 sdw rnd-4">
+        <div class="font-l">
+            <h1>
+                <span class="font-b">Master</span> 
+                <span class="font-b clr-theme">English</span>
+                <br>
+                <span class="font-ssm">Anytime, Anywhere.</span>
+            </h1>
+        </div>
+    </div>
     {% include "home/main_copy.html" %}
-
-    <!-- <div class="m-t-4">
-        <p class="font-xl font-b">Our partner:</p>
-        <a href="https://theyellowtherapist.com">
-            <img src="https://images.theyellowtherapist.com/logos/tyt_logo_v2.jpg" width="200px">
-        </a>
-    </div> -->
-     
-{% endblock content %}
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+</body>
+</html>
