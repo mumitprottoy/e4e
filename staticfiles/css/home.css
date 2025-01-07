@@ -28,6 +28,20 @@
     grid-column: 2;
 }
 
+#home-small {
+    display: none;
+}
+
+@media only screen and (max-width:1000px) {
+    #home-big {
+        display: none;
+    }
+
+    #home-small {
+        display: block;
+    }
+}
+
 @media only screen and (max-width:720px) {
     #main-copy {
         grid-template-columns: 1fr;
