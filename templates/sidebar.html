@@ -11,23 +11,35 @@
                 
             <div>
                 {% if user.is_authenticated %}
-                  <div>
-                    <a href="/" class="flex">
+                  <div class="m-b-2">
+                    <a href="{% url 'profile' %}" class="flex">
                         <img src="{{user.pic.url}}" alt="" class="rnd brd-primary-2 flex-c vert-c m pic-sm">
                         <span class="m flex-c vert-c font-sm font-b">{{user.get_full_name}}</span>
                         <span class="m flex-c vert-c font-xl fas fa-angle-right"></span>
                     </a>
                   </div>
-                  <div class="brd-t-def m-t-2">
-                      <div class="m-t">
-                          <a class="clr-red font-b" href="{% url 'logout' %}"><span class="clr-red fa fa-sign-out"></span> Logout</a>
-                      </div>
-                  </div>
+                  {% if not user.status.is_premium %}
+                  <a href="{% url 'upgrade-to-premium' %}" class="block m-t-b-4 clr-primary"><span class="fa fa-crown"></span> Upgrade to premium</a>
+                  {% endif %}
+                  {% if user.status.is_sales_partner %}
+                  <a href="http://" class="block m-t-b-4 clr-primary"><span class="fas fa-receipt"></span> Withdraw commission</a>
                   {% else %}
-                      <div class="m-t">
-                          <a href="{% url 'login' %}" class="rnd-4 bg-theme clr-white p-4 brd-def-theme">Get Started</a>
-                          <!-- <a class="font-l brd-primary rnd-1 p clr-white bg-primary" href="{% url 'login' %}"><span class="fa fa-sign-in clr-white"></span> Enter</a> -->
-                      </div>
+                  <a href="/" class="block m-t-b-4 clr-primary"><span class="fa fa-handshake"></span> Affiliate/Referral Program</a>
+                  {% endif %}
+
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <div class="brd-t-def m-t-2">
+                    <div class="m-t">
+                        <a class="clr-red font-b" href="{% url 'logout' %}"><span class="clr-red fa fa-sign-out"></span> Sign Out</a>
+                    </div>
+                </div>
+                {% else %}
+                  <div class="m-t">
+                    <a href="{% url 'login' %}" class="rnd-4 bg-theme clr-white p-4 brd-def-theme">Get Started</a>
+                    <!-- <a class="font-l brd-primary rnd-1 p clr-white bg-primary" href="{% url 'login' %}"><span class="fa fa-sign-in clr-white"></span> Enter</a> -->
+                  </div>
                 {% endif %}
             </div>
             <div></div>

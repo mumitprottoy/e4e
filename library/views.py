@@ -22,8 +22,8 @@ def study(request, chapter_id: int):
     if chapter.exists():
         user = request.user
         chapter = chapter.first()
-        if chapter.name in const.GORIB_CHAPTER_ACCESS and (not request.user.status.is_premium):
-            return redirect('please-upgrade')
+        # if chapter.name in const.GORIB_CHAPTER_ACCESS and (not request.user.status.is_premium):
+        #     return redirect('please-upgrade')
         if not models.Topic.objects.filter(chapter=chapter).exists():
             return redirect(f'/practise-chapter/{chapter.id}')
         context['chapter'] = chapter

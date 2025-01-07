@@ -92,7 +92,7 @@ class PurchaseV3(models.Model):
     
     def discounted_amount(self):
         amount = self.product.price - self.payable_amount
-        return amount if amount > 0 else 0        
+        return amount if amount > 0 else 0       
     
     @property
     def window_is_closed(self):

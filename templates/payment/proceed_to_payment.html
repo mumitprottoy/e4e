@@ -2,23 +2,31 @@
 {% load static %}
 
 {% block content %}
-    <div class="p rnd-1">
-        <p class="font-xl clr-theme">Payment</p>
-        <div class="grid-col-12 m-t-b-4 p-2 rnd-1 bg-b-1 font-b">
-            <div><span>Payable</span></div>
-            <div class="txt-r">
+    <fieldset class="no-brd p-4 rnd-3 sdw m-t-b-6">
+        <legend class="p font-b bg-primary clr-white">Payment Info</legend>
+        <div class="grid-col-11">
+            {% if purchase.channel.not_organic %}
+            <div class="m font-b brd-b-def">Channel</div>
+            <div class="m txt-r brd-b-def">{{purchase.channel.partner_type}}</div>
+            {% endif %}
+            <div class="m font-b brd-b-def">Base Price</div>
+            <div class="m txt-r brd-b-def">BDT {{purchase.product.price}}</div>
+            <div class="m font-b brd-b-def">Discount</div>
+            <div class="m txt-r brd-b-def">BDT {{purchase.discounted_amount}}</div>
+            <div class="m m-t-2"><span class="font-b">Payable</span></div>
+            <div class="m m-t-2 txt-r">
                 {% if purchase.is_discounted %}
-                <span><del class="clr-b-3">BDT {{purchase.product.price}}</del> <span class="clr-green">BDT {{purchase.payable_amount}}</span></span>
+                <span class="font-b"><del class="clr-b-3">BDT {{purchase.product.price}}</del> <span>BDT {{purchase.payable_amount}}</span></span>
                 {% else %}
-                <span>BDT {{purchase.payable_amount}}</span>
+                <span class="font-b">BDT {{purchase.payable_amount}}</span>
                 {% endif %}
             </div>
         </div>
-        <form method='POST'>
-            {% csrf_token %}
-            <div class="w-fc m-c p">
-                <button type="submit" class="p-2 clr-white font-l bg-primary brd-primary rnd-1"><span class="clr-white">Proceed to payment</span> <span class="clr-white fa fa-arrow-right"></span></button>
-            </div>
-        </form>
-    </div>
+    </fieldset>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="w-fc m-c p m-t-b-4">
+            <button type="submit" class="p-2 clr-white font-l bg-primary brd-primary rnd-1"><span class="clr-white">Proceed to pay BDT {{purchase.payable_amount}}</span> <span class="clr-white fa fa-arrow-right"></span></button>
+        </div>
+    </form>
 {% endblock content %}  

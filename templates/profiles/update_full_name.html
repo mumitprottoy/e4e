@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <div class="m-c w-fc resp-70-90 p-2 rnd-1 sdw">
-        <!-- <span class="font-xl m">Update Full Name</span> -->
+    <fieldset class="m-c no-brd w-fc resp-70-90 p-2 rnd-1 sdw">
+        <legend class="p bg-primary clr-white">Change Name</legend>
         <form method='POST'>
             {% if errors %}
               {% include "errors.html" with errors=errors %}
@@ -11,16 +11,16 @@
             {% csrf_token %}
             <fieldset class="no-brd brd-def rnd-1 m-t-b-4">
                 <legend class="font-b p">First Name</legend>
-                <input class="m no-brd bg-transparent w-90" type="text" name="first_name" placeholder="Lionel" required>
+                <input class="m no-brd bg-transparent w-90" type="text" name="first_name" value="{{user.first_name}}" placeholder="Lionel" required>
             </fieldset>
             <fieldset class="no-brd brd-def rnd-1 m-t-b-4">
                 <legend class="font-b p">Last Name</legend>
-                <input class="m no-brd bg-transparent w-90" type="text" name="last_name" placeholder="Ronaldo" required>
+                <input class="m no-brd bg-transparent w-90" type="text" name="last_name" value="{{user.last_name}}" placeholder="Ronaldo" required>
             </fieldset>
             
             <div class="m-t-b-2 w-fc m-c">
                 <button type="submit" class="m p-2 bg-primary clr-white rnd-1">Update</button>
             </div>
         </form>
-    </div>
+    </fieldset>
 {% endblock content %}

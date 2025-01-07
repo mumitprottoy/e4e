@@ -5,6 +5,7 @@ from stuff import models as stuff_models
 from utils.keygen import KeyGen
 from . import operations as ops
 
+
 class Picture(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='pic')
     url = models.TextField(default='')
@@ -30,6 +31,10 @@ class Phone(models.Model):
 class UserStatus(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='status')
     is_premium = models.BooleanField(default=False)
+    
+    @property
+    def is_sales_partner(self):
+        return hasattr(self.user, 'partner')
     
     def update_to_premium(self):
         self.is_premium = True

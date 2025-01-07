@@ -12,10 +12,11 @@ const ___ = (__) => {
         __.className = _s[v[__.id]];
         [...__.parentElement.children].forEach(child => {
             if (__.id != child.id && v[child.id]) 
-                 child.className = _s[v[child.id]]; 
+                child.className = _s[v[child.id]]; 
         });
         document.getElementById('c-f').style.display = 'block';
     }
+    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
 }
 const buddhirKhela = __ => {
     ++_b; if (!_b) fetch(`/amar-onek-buddhi/${__.id}`);
